@@ -30,16 +30,16 @@ folder (or the archive) to the new machine and run the installer.
 
 ### 0. Get the bundle onto the new machine
 Copy `claude-config-bundle.tar.gz` (Linux/WSL/macOS) or `claude-config-bundle.zip`
-(Windows) — or the whole `claude-portable/` folder — over via USB / scp / cloud drive,
+(Windows) — or the whole `claude-specs-portable/` folder — over via USB / scp / cloud drive,
 then unpack (skip this if you copied the folder directly):
 
 ```bash
 # Linux / WSL / macOS
-tar xzf claude-config-bundle.tar.gz && cd claude-portable
+tar xzf claude-config-bundle.tar.gz && cd claude-specs-portable
 ```
 ```powershell
 # Windows (PowerShell)
-Expand-Archive claude-config-bundle.zip -DestinationPath . ; cd claude-portable
+Expand-Archive claude-config-bundle.zip -DestinationPath . ; cd claude-specs-portable
 ```
 
 ### 1. Run the installer
