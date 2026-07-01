@@ -1,0 +1,61 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:rerun.io)",
+      "WebFetch(domain:ref.rerun.io)",
+      "Bash(.venv/bin/python -c \"import rerun.blueprint as rrb; import inspect; members = inspect.getmembers\\(rrb\\); theme_related = [m for m in members if ''theme'' in m[0].lower\\(\\) or ''background'' in m[0].lower\\(\\)]; print\\(''\\\\n''.join\\([f''{m[0]}: {type\\(m[1]\\).__name__}'' for m in theme_related]\\)\\)\")",
+      "Bash(.venv/bin/python -c \"import rerun.blueprint as rrb; help\\(rrb.Background\\)\")",
+      "Bash(.venv/bin/python -c \"import rerun.blueprint as rrb; help\\(rrb.BackgroundKind\\)\")",
+      "Bash(.venv/bin/python -c \"from rerun import blueprint as rrb; print\\(dir\\(rrb\\)\\)\")",
+      "Bash(.venv/bin/python -c \"from rerun import blueprint as rrb; print\\([x for x in dir\\(rrb\\) if ''theme'' in x.lower\\(\\) or ''style'' in x.lower\\(\\)]\\)\")",
+      "Bash(.venv/bin/python -c \"from rerun import blueprint as rrb; help\\(rrb.PlotBackground\\)\")",
+      "Bash(.venv/bin/python -c \"from rerun import blueprint as rrb; import inspect; sig = inspect.signature\\(rrb.Blueprint.__init__\\); print\\(sig\\)\")",
+      "Bash(.venv/bin/python:*)",
+      "Bash(gh api *)",
+      "Skill(pr-review-toolkit:review-pr)",
+      "Skill(pr-review-toolkit:review-pr:*)",
+      "Skill(deep-research)",
+      "Skill(deep-research:*)"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "code-simplifier@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "learning-output-style@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "session-report@claude-plugins-official": true
+  },
+  "switchModelsOnFlag": false,
+  "effortLevel": "xhigh",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__PY__ \"__HOOKS_DIR__/claude-notify-hook.py\" done",
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "__PY__ \"__HOOKS_DIR__/claude-notify-hook.py\" input",
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}
