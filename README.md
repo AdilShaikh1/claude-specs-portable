@@ -13,6 +13,7 @@ folder (or the archive) to the new machine and run the installer.
 | `hooks/claude-notify.ps1`, `set-audio-output.ps1` | Windows PowerShell helpers used by the hook. |
 | `skills/grill-me/` | Custom skill. |
 | `plugins/blocklist.json` | Blocked-plugins list. |
+| `install-plugins.sh` / `.ps1` | Installs the enabled plugins via `claude plugin install` — run after login (`enabledPlugins` alone does **not** install them). |
 | `memory/CLAUDE.md` | **Transferable** global rules → installs to `~/.claude/CLAUDE.md` (loads on every machine + project). |
 | `memory/vpe/` | Full verbatim snapshot of the project memory (VPE-specific). Installed **only** with `--with-vpe`. |
 
@@ -21,8 +22,10 @@ folder (or the archive) to the new machine and run the installer.
 - `~/.claude/.credentials.json`, `~/.claude.json` — OAuth tokens, account UUID,
   machineID. Tied to the account/machine; **re-login** after install.
 - MCP connector auth — **re-authorize** with `/mcp`.
-- `plugins/cache/` — the 12 official plugins re-download from the always-available
-  `@claude-plugins-official` marketplace on first run.
+- `plugins/cache/` — the ~17 MB of plugin code isn't bundled. **Note:**
+  `enabledPlugins` in `settings.json` only *enables* already-installed plugins — it
+  does **not** install them. Run `install-plugins.sh` after login to fetch + install
+  the enabled plugins via the CLI (see the After-install step).
 - Sessions, transcripts, file-history, ide locks, shell snapshots, caches — machine
   state, not preferences.
 
@@ -70,7 +73,10 @@ writing, and never touches credentials.
 ### 2. After install
 1. `claude`  →  `/login`  (account is per-machine)
 2. `/mcp`  → re-auth connectors (Google Calendar/Drive, Miro, etc.)
-3. Plugins re-download on first run.
+3. **Install plugins:** `./install-plugins.sh` (or `./install-plugins.ps1`) — this runs
+   `claude plugin install` for each enabled plugin. `enabledPlugins` in `settings.json`
+   only *enables* them; it does **not** install them. Then reload your editor/window
+   (VS Code: "Developer: Reload Window") so they load.
 4. Trigger a Stop event to confirm the notification fires.
 
 ## Custom config dir

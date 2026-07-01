@@ -32,6 +32,11 @@
     "pr-review-toolkit@claude-plugins-official": true,
     "session-report@claude-plugins-official": true
   },
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": { "source": "github", "repo": "anthropics/claude-plugins-official" }
+    }
+  },
   "switchModelsOnFlag": false,
   "effortLevel": "xhigh",
   "hooks": {
